@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  font-family: Arial;
+  background-color: #3498db;
+}
+
+.growing-search {
+  padding: 5px;
+  border-radius: 0.25rem; 
+  background: transparent; 
+}
+
+.growing-search .input, .growing-search .submit {
+  display: inline-block;
+}
+
+.growing-search .input input {
+  margin-right: 0;
+  border: none;
+  background: transparent;
+  font-size: inherit;
+  transition: width 200ms, background-color 200ms, color 200ms;
+  padding: 5px;
+  width: 55px;
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}
+
+.growing-search .input input::placeholder {
+  color: #fff;
+  opacity: 0.5;
+}
+
+.growing-search .input input:focus {
+  width: 150px;
+  color: #fff;
+}
+
+.growing-search .submit button {
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  transition: color 200ms;
+}
+
+.growing-search .input input:hover, .growing-search .submit button:hover {
+  cursor: default;
+}
+
+.growing-search .input input:focus, .growing-search .submit button:focus {
+  outline: none;
+}
