@@ -39,9 +39,9 @@ jobs:
         uses: burnett01/rsync-deployments@5.1
         with:
           switches: --no-perms -O --exclude=.git/ --exclude=.env --exclude=node_modules --delete -Prltvz
-          path: ./
-          remote_path: /home/ec2-user/app/public/wp-content/themes/WeatherVersion
-          remote_host: ec2-3-140-167-156.us-east-2.compute.amazonaws.com
-          remote_port: 22
-          remote_user: ec2-user
-          remote_key: ${{ secrets.SSH_DEPLOY_KEY }}
+        path: ./
+        remote_path: /home/ec2-user/app/public/wp-content/themes/WeatherVersion
+        remote_host: ec2-3-140-167-156.us-east-2.compute.amazonaws.com
+        remote_port: 22
+        remote_user: ec2-user
+        remote_key: ${{ secrets.SSH_DEPLOY }}
