@@ -1,0 +1,47 @@
+name: Weather App - lucastestes.com.br
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    name: Get Source Code and deploy into production
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Repository Checkout
+        uses: actions/checkout@v3
+
+      - name: Verify composer cache
+        uses: actions/cache@v2
+        with:
+          path: /tmp/composer-cache
+          key: ${{ runner.os }}-${{ hashFiles('**/composer.lock') }}
+
+      - name: Run composer install to install sage dependencies
+        env:
+          COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.OAUTH }}"}}'
+        uses: php-actions/composer@v5
+        with:
+          version: 2
+          args: --ignore-platform-reqs
+
+      - name: Node Setup
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+
+      - name: Run yarn install and yarn build
+        working-directory: ./
+        run: yarn && yarn cache clean && yarn build
+
+      - name: Copy files
+        uses: burnett01/rsync-deployments@5.1
+        with:
+          switches: --no-perms -O --exclude=.git/ --exclude=.env --exclude=node_modules --delete -Prltvz
+          path: ./
+          remote_path: home/ec2-user/app/public/wp-content/themes/WeatherVersion
+          remote_host: ec2-user@ec2-3-140-167-156.us-east-2.compute.amazonaws.com
+          remote_port: 22
+          remote_user: ec2-user
+          remote_key: ${{ secrets.SSH_DEPLOY }}
