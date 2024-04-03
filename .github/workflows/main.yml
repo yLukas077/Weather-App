@@ -21,7 +21,7 @@ jobs:
       - name: Run composer install to install sage dependencies
         env:
           COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.OAUTH }}"}}'
-        uses: php-actions/composer@v5
+        uses: php-actions/composer@v6
         with:
           version: 2
           args: --ignore-platform-reqs
