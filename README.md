@@ -1,54 +1,67 @@
-<p align="center">
-  <a href="https://roots.io/sage/">
-    <img alt="Sage" src="https://cdn.roots.io/app/uploads/logo-sage.svg" height="100">
-  </a>
-</p>
+# Documentação do Projeto Weather App
 
-<p align="center">
-  <a href="https://packagist.org/packages/roots/sage">
-    <img alt="Packagist Installs" src="https://img.shields.io/packagist/dt/roots/sage?label=projects%20created&colorB=2b3072&colorA=525ddc&style=flat-square">
-  </a>
+Este projeto envolve a criação de um tema WordPress personalizado usando Sage 10, projetado para exibir previsões meteorológicas com base na localização do usuário. Os usuários também podem pesquisar previsões meteorológicas para outras localidades ao redor do mundo.
 
-  <a href="https://github.com/roots/sage/actions/workflows/main.yml">
-    <img alt="Build Status" src="https://img.shields.io/github/actions/workflow/status/roots/sage/main.yml?branch=main&logo=github&label=CI&style=flat-square">
-  </a>
+## Etapa 1 - Preparação e Desenvolvimento Local
 
-  <a href="https://twitter.com/rootswp">
-    <img alt="Follow Roots" src="https://img.shields.io/badge/follow%20@rootswp-1da1f2?logo=twitter&logoColor=ffffff&message=&style=flat-square">
-  </a>
-</p>
+### Objetivos
+- Instalar Docker e Docker Compose na máquina local.
+- Criar o ambiente de desenvolvimento local.
+- Instalar e configurar o tema Sage 10.
 
-<p align="center">Advanced WordPress starter theme with Tailwind CSS and Laravel Blade</p>
+### Procedimentos
+1. Instalação do Docker e Docker Compose na máquina local.
+2. Criação de um diretório para o projeto.
+3. Construção do arquivo `docker-compose.yml` com duas imagens: `wordpress` e `mariadb`.
+4. Verificação dos arquivos e instalação do WordPress via localhost.
+5. Instalação do Sage 10 e suas dependências (Yarn, Node, Composer).
+6. Configurações de preparação para o tema.
+7. Construção do arquivo de template e do script necessário.
+8. Criação de um arquivo `proxy.php` para atuar como intermediário nas requisições a uma das APIs utilizadas.
+9. Build do tema e realização de testes práticos no ambiente local, seguido de correção de bugs.
+10. Definição do template criado como o tema principal do site.
+11. Configuração da página em que o template foi aplicado como a página inicial do site.
 
-<p align="center">
-  <a href="https://roots.io/sage/">Website</a> &nbsp;&nbsp; <a href="https://roots.io/sage/docs/installation/">Documentation</a> &nbsp;&nbsp; <a href="https://github.com/roots/sage/releases">Releases</a> &nbsp;&nbsp; <a href="https://discourse.roots.io/">Community</a>
-</p>
+## Etapa 2 - Configuração do Servidor
 
-## Sponsors
+### Objetivos
+- Preparar a infraestrutura na nuvem.
+- Configurar o domínio e SSL.
 
-Sage is an open source project and completely free to use. If you've benefited from our projects and would like to support our future endeavors, please consider [sponsoring Roots](https://github.com/sponsors/roots).
+### Procedimentos
+1. Criação de uma instância EC2.
+2. Armazenamento da chave na máquina local.
+3. Edição das regras de entrada do grupo de segurança para autorizar tráfego nas portas usadas.
+4. Aquisição de um domínio público e registro no Cloudflare.
+5. Registro do IP público da instância EC2 e do CNAME no Cloudflare.
+6. Atualização dos nameservers no registrador de domínio com os fornecidos pelo Cloudflare.
 
-<div align="center">
-<a href="https://k-m.com/"><img src="https://cdn.roots.io/app/uploads/km-digital.svg" alt="KM Digital" width="120" height="90"></a> <a href="https://carrot.com/"><img src="https://cdn.roots.io/app/uploads/carrot.svg" alt="Carrot" width="120" height="90"></a> <a href="https://wordpress.com/"><img src="https://cdn.roots.io/app/uploads/wordpress.svg" alt="WordPress.com" width="120" height="90"></a> <a href="https://worksitesafety.ca/careers/"><img src="https://cdn.roots.io/app/uploads/worksite-safety.svg" alt="Worksite Safety" width="120" height="90"></a> <a href="https://www.copiadigital.com/"><img src="https://cdn.roots.io/app/uploads/copia-digital.svg" alt="Copia Digital" width="120" height="90"></a> <a href="https://www.freave.com/"><img src="https://cdn.roots.io/app/uploads/freave.svg" alt="Freave" width="120" height="90"></a> <a href="https://40q.agency/"><img src="https://cdn.roots.io/app/uploads/40q.svg" alt="40Q" width="120" height="90"></a>
-</div>
+## Etapa 3 - Implantação
 
-## Overview
+### Objetivos
+- Configurar o ambiente de produção.
+- Instalar e configurar o WordPress no servidor.
 
-Sage is a WordPress starter theme with block editor support.
+### Procedimentos
+1. Conexão com a instância EC2.
+2. Instalação do Docker e Docker Compose na instância.
+3. Criação de um diretório no servidor e configuração do `docker-compose.yml`.
+4. Verificação dos arquivos.
+5. Instalação e configuração do servidor web (Apache).
+6. Criação e configuração do certificado Cloudflare CA.
+7. Configuração do servidor web para usar Proxy(HTTPS) e SSL/TLS.
+8. Mudança do modo de segurança de Flexível para Completo (Estrito) no Cloudflare.
+9. Instalação do WordPress via domínio configurado.
 
-- Harness the power of [Laravel](https://laravel.com) and its available packages thanks to [Acorn](https://github.com/roots/acorn)
-- Clean, efficient theme templating utilizing [Laravel Blade](https://laravel.com/docs/master/blade)
-- Modern frontend development workflow powered by [Bud](https://bud.js.org/)
-- Out of the box support for [Tailwind CSS](https://tailwindcss.com/)
+## Etapa 4 - Deploy e CI/CD
 
-## Getting Started
+### Objetivos
+- Configurar a integração contínua para o tema.
+- Automatizar o processo de deploy.
 
-See the [Sage installation documentation](https://roots.io/sage/docs/installation/).
-
-## Stay Connected
-
-- Join us on Discord by [sponsoring us on GitHub](https://github.com/sponsors/roots)
-- Participate on [Roots Discourse](https://discourse.roots.io/)
-- Follow [@rootswp on Twitter](https://twitter.com/rootswp)
-- Read the [Roots Blog](https://roots.io/blog/)
-- Subscribe to the [Roots Newsletter](https://roots.io/newsletter/)
+### Procedimentos
+1. Criação de um repositório no GitHub para o projeto.
+2. Criação de uma pasta `.github/workflows` com um arquivo `main.yml` no tema.
+3. Configuração da GitHub Action para realizar a conectividade com a instância EC2 e atualizar as alterações no tema automaticamente via branch `main`.
+4. Criação das secrets necessárias no painel de configurações do repositório no GitHub.
+5. Execução do deploy do projeto.
